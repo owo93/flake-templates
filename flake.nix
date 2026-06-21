@@ -2,7 +2,7 @@
   description = "A collection of opinionated flake templates";
 
   outputs =
-    { self }:
+    { self, ... }:
     {
       templates = {
         rust = {
@@ -10,7 +10,7 @@
           description = "Rust development environment with fenix";
         };
 
-        defaultTemplate = self.templates.rust;
+        default = self.templates.rust;
       };
     };
 }
