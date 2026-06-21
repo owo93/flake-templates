@@ -1,4 +1,5 @@
 # flake templates
+![built with nix](https://img.shields.io/badge/-Built%20with%20Nix-darkslateblue) ![GitHub License](https://img.shields.io/github/license/owo93/flake-templates)
 
 A collection of nix flake templates for creating common dev environments
 
