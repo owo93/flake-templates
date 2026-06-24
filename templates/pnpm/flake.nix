@@ -31,6 +31,7 @@
               fi
 
               echo "Node.js $(node --version) dev environment is ready"
+              echo -e "\t\u2192 pnpm $(pnpm --version)"
             '';
           };
         };
