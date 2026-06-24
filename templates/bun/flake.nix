@@ -20,17 +20,16 @@
         {
           devShells.default = pkgs.mkShellNoCC {
             packages = with pkgs; [
-              nodejs
-              pnpm
+              bun
             ];
 
             shellHook = ''
-              if [ ! -d "node_modules" ] && [ -f "package.json" ]; then
-                echo "Installing node dependencies"
-                pnpm install
+              if [ ! -d "node_modules" ] && [ -f "package.json" ] && [ ! -f "bun.lock" ]; then
+                echo "Installing node dependencies w/ bun"
+                bun install
               fi
 
-              echo "Node.js $(node --version) dev environment is ready"
+              echo "Bun $(bun --version) dev environment is ready"
             '';
           };
         };

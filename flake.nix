@@ -17,7 +17,12 @@
 
         pnpm = {
           path = ./templates/pnpm;
-          description = "Node.js development environment with npm";
+          description = "Node.js development environment with pnpm";
+        };
+
+        bun = {
+          path = ./templates/bun;
+          description = "Bun development environment";
         };
 
         default = self.templates.rust;
