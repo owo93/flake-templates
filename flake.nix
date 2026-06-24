@@ -15,6 +15,11 @@
           description = "Rust development environment with fenix";
         };
 
+        pnpm = {
+          path = ./templates/pnpm;
+          description = "Node.js development environment with npm";
+        };
+
         default = self.templates.rust;
       };
     };

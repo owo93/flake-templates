@@ -43,6 +43,10 @@
                 "rust-analyzer"
               ])
             ];
+
+            shellHook = ''
+              echo "Rust $(rustc --version) dev environment is ready"
+            '';
           };
         };
     };
