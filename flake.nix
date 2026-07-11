@@ -25,7 +25,7 @@
           description = "Bun development environment";
         };
 
-        default = self.templates.rust;
+        default = self.templates.trivial;
       };
     };
 }
