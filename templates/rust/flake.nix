@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,25 +22,24 @@
         {
           inputs',
           pkgs,
+          lib,
           ...
         }:
         let
-          rustToolchain = inputs'.fenix.packages.stable;
+          rustToolchain = inputs'.fenix.packages.fromToolchainFile {
+            file = ./rust-toolchain.toml;
+            sha256 = lib.fakeSha256;
+          };
         in
         {
+          _module.args = { inherit rustToolchain; };
+
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
               pkg-config
               openssl
 
-              (rustToolchain.withComponents [
-                "cargo"
-                "clippy"
-                "rust-src"
-                "rustc"
-                "rustfmt"
-                "rust-analyzer"
-              ])
+              rustToolchain
             ];
 
             shellHook = ''
