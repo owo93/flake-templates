@@ -15,11 +15,9 @@
       ];
       perSystem =
         {
-          config,
-          self',
-          inputs',
-          pkgs,
           system,
+          pkgs,
+          inputs',
           ...
         }:
         {
