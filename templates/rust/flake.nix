@@ -6,6 +6,10 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    naersk = {
+      url = "github:nix-community/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -18,33 +22,26 @@
         "aarch64-darwin"
       ];
 
+      imports = [
+        ./nix/modules/devshell.nix
+        ./nix/modules/package.nix
+      ];
+
       perSystem =
         {
           inputs',
-          pkgs,
-          lib,
           ...
         }:
         let
           rustToolchain = inputs'.fenix.packages.fromToolchainFile {
             file = ./rust-toolchain.toml;
-            sha256 = lib.fakeSha256;
+            sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
           };
         in
         {
-          _module.args = { inherit rustToolchain; };
-
-          devShells.default = pkgs.mkShell {
-            packages = with pkgs; [
-              pkg-config
-              openssl
-
-              rustToolchain
-            ];
-
-            shellHook = ''
-              echo "Rust $(rustc --version) dev environment is ready"
-            '';
+          _module.args = {
+            inherit rustToolchain;
+            inherit (inputs) naersk;
           };
         };
     };
