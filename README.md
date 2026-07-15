@@ -13,7 +13,7 @@ To initialize a new project with your desired template:
 nix flake init --template github:owo93/flake-templates#name
 ```
 
-| name        | desc                                               |
-| ----------- | -------------------------------------------------- |
-| **trivial** | Very basic flake-parts flake, the default template |
-| **rust**    | rust dev environment with fenix (stable toolchain) |
+| name        | desc                                                                                                                                                                                           |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **trivial** | Very basic flake-parts flake, the default template                                                                                                                                             |
+| **rust**    | Rust project template w/ [`flake-parts`](https://github.com/hercules-ci/flake-parts) + [`fenix`](https://github.com/nix-community/fenix) + [`naersk`](https://github.com/nix-community/naersk) |
